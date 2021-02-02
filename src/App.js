@@ -12,11 +12,15 @@ function App() {
                <Route
                   exact
                   path="/"
-                  render={() => <Posts endpoint="topstories" />}
+                  component={() => (
+                     <Posts limiter={200} endpoint="topstories" />
+                  )}
                />
                <Route
                   path="/new"
-                  render={() => <Posts endpoint="newstories" />}
+                  component={() => (
+                     <Posts limiter={200} endpoint="newstories" />
+                  )}
                />
             </Switch>
          </Router>

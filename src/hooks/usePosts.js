@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import { useState, useEffect, useRef } from 'react';
 import { getPosts } from '../api/Request';
 
