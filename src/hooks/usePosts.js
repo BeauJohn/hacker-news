@@ -24,4 +24,4 @@ function usePosts(endpoint, limiter) {
    return posts;
 }
 
-export default usePosts;
+export { usePosts };

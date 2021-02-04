@@ -4,14 +4,22 @@ const requestHN = (endpoint, { signal } = {}) => {
    });
 };
 
-export const getPosts = async (endpoint, { signal }, limiter = 30) => {
+export const getPosts = async (endpoint, { signal }, limiter) => {
    try {
-      let postPromises = [];
       const response = await requestHN(endpoint, { signal });
       const data = await response.json();
+      return getItems(data, { signal }, limiter);
+   } catch (error) {
+      console.log(error);
+   }
+};
+
+export const getItems = async (items, { signal }, limiter = 30) => {
+   try {
+      let postPromises = [];
 
       for (let i = 0; i < limiter; i++) {
-         const id = data[i];
+         const id = items[i];
          postPromises.push(requestHN(`item/${id}`, { signal }));
       }
 

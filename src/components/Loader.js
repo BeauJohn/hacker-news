@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function Loader() {
+function Loader({ loadText = 'Loading' }) {
    const [dots, setDots] = useState('');
 
    useEffect(() => {
@@ -14,7 +14,8 @@ function Loader() {
 
    return (
       <div className="text-4xl  items-center flex justify-center">
-         Loading{dots}
+         {loadText}
+         {dots}
       </div>
    );
 }

@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Navigation from './components/Navigation';
-import Posts from './components/Posts';
+import New from './components/New';
 import User from './components/User';
+import Home from './components/Home';
 
 function App() {
    return (
@@ -10,15 +11,8 @@ function App() {
          <Router>
             <Navigation />
             <Switch>
-               <Route
-                  exact
-                  path="/"
-                  component={() => <Posts limiter={50} endpoint="topstories" />}
-               />
-               <Route
-                  path="/new"
-                  component={() => <Posts limiter={50} endpoint="newstories" />}
-               />
+               <Route exact path="/" component={Home} />
+               <Route path="/new" component={New} />
                <Route path="/users/:userName" component={User} />
             </Switch>
          </Router>
