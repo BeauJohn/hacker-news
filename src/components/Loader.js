@@ -6,13 +6,17 @@ function Loader() {
    useEffect(() => {
       const interval = setInterval(() => {
          setDots((dots) => (dots.length === 3 ? '' : dots + '.'));
-      }, 500);
+      }, 350);
       return () => {
          clearInterval(interval);
       };
    }, []);
 
-   return <div className="text-xl">Loading{dots}</div>;
+   return (
+      <div className="text-4xl  items-center flex justify-center">
+         Loading{dots}
+      </div>
+   );
 }
 
 export default Loader;

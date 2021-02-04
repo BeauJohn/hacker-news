@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { getPosts } from '../api/Request';
 
-function usePosts(endpoint, limiter = 30) {
+function usePosts(endpoint, limiter) {
    const [posts, setPosts] = useState([]);
    const isMounted = useRef(null);
 

@@ -22,3 +22,13 @@ export const getPosts = async (endpoint, { signal }, limiter = 30) => {
       console.log(error);
    }
 };
+
+export const getUser = async (userName) => {
+   try {
+      const response = await requestHN(`user/${userName}`);
+      const data = await response.json();
+      return data;
+   } catch (error) {
+      console.log(error);
+   }
+};
