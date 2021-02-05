@@ -17,8 +17,9 @@ export const getPosts = async (endpoint, { signal }, limiter) => {
 export const getItems = async (items, { signal }, limiter = 30) => {
    try {
       let postPromises = [];
+      const limit = items.length < limiter ? items.length : limiter;
 
-      for (let i = 0; i < limiter; i++) {
+      for (let i = 0; i < limit; i++) {
          const id = items[i];
          postPromises.push(requestHN(`item/${id}`, { signal }));
       }
@@ -31,11 +32,12 @@ export const getItems = async (items, { signal }, limiter = 30) => {
    }
 };
 
-export const getUser = async (userName) => {
+export const getUser = async (userName, { signal }, limiter) => {
    try {
-      const response = await requestHN(`user/${userName}`);
-      const data = await response.json();
-      return data;
+      const response = await requestHN(`user/${userName}`, { signal });
+      const user = await response.json();
+      const items = await getItems(user.submitted, { signal }, limiter);
+      return { ...user, submitted: items };
    } catch (error) {
       console.log(error);
    }
